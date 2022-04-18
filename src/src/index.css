@@ -1,0 +1,159 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding: 0; margin: 0;
+}
+
+.camera {
+  background: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.camera video {
+  width: 100%;
+  height: 100%;
+}
+
+.players-container {
+  display: block;
+  width: 25rem;
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.player {
+  display: block;
+  background: rgba(31, 31, 31, 0.671);
+  border: 2px solid rgb(0, 110, 255);
+  border-radius: .75rem;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.player--all-in {
+  border: 2px solid red;
+  box-shadow: #ff00002e 1px 6px 6px 2px;
+}
+
+.player__button, .player__all-in-chip {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.8rem;
+  margin-right: .25rem;
+}
+
+.card {
+  display: block;
+  width: 4.5rem;
+  margin-right: .5rem;
+  height: auto;
+  box-shadow: #7c7c7ca8 -1px 4px 9px 0px;
+}
+
+.card:last-of-type {
+  margin-right: 0;
+}
+
+.player {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding: .75rem 10.5rem .75rem 0.5rem;
+  color: white;
+  overflow: hidden;
+  transition: .5s ease;
+}
+
+.player__image {
+  display: inline-block;
+  margin: .5rem;
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  border-radius: .75rem;
+  vertical-align: middle;
+  border: 2px solid rgb(0, 110, 255);
+}
+
+.player--all-in .player__image {
+  border: 2px solid red;
+}
+
+.player--folded {
+  opacity: .5;
+  /* height: 0px;
+  padding: 0;
+  border: 0;
+  margin: 0; */
+}
+
+.player__info {
+  width: 100%;
+}
+
+.player__name {
+  font-size: 1.25rem;
+}
+
+.player__stack {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: .7;
+  margin: 0 .5rem .5rem 0;
+}
+
+.player__cards {
+  display: flex;
+  position: absolute;
+  bottom: -1rem; right: 1rem;
+}
+
+.player__cards .card:nth-child(1) {
+  transform: rotate(-10deg) translate(1rem, 1rem);
+}
+
+
+.player__cards .card:nth-child(2) {
+  transform: rotate(10deg);
+}
+
+.player__status {
+  margin: 0.5rem;
+  text-transform: uppercase;
+  font-weight: .9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.board {
+  display: flex;
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1;
+}
+
+.board .card {
+  width: 5rem;
+}
+
+.board .runout, .board .burncards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board .burncards {
+  position: relative;
+  margin: 0;
+}
+
+.board .burncards .card:not(:nth-child(1)) { box-shadow: none; }
+.board .burncards .card:nth-child(2) { position: absolute; transform: translate(-.25rem, .25rem); }
+.board .burncards .card:nth-child(3) { position: absolute; transform: translate(-.75rem, .5rem); }

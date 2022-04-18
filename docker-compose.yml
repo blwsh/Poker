@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  app:
+    build: 
+      target: dev
+    user: "${UID}:${GID}"
+    volumes:
+      - ./src:/src:delegated
+    ports:
+      - 3000:3000
