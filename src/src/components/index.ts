@@ -1,5 +1,6 @@
 export {default as Board} from './Board'
 export {default as Card} from './Card'
 export {default as Camera} from './Camera'
+export {default as Player} from './Player'
 export {default as Players} from './Players'
 export {default as Pot} from './Pot'

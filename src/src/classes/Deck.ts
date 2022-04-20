@@ -11,7 +11,7 @@ class Deck implements DeckInterface {
         const cards: Card[] = [];
 
         const cardValueMap: any = {10: 'T', 11: 'J', 12: 'Q', 13: 'K', 14: 'A'};
-        const cardSuitMap: any = {1: 'D', 2: 'H', 3: 'C', 4: 'H'};
+        const cardSuitMap: any = {1: 'D', 2: 'H', 3: 'C', 4: 'S'};
 
         range(4, 1).map(suit => {
             range(13, 2).map(value => {
@@ -20,7 +20,7 @@ class Deck implements DeckInterface {
             })
         })
 
-        this.cards= cards;
+        this.cards = cards;
     }
 
     shuffle() {
