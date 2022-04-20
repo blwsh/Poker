@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import io, { Socket } from 'socket.io-client';
+import React from 'react';
 import { Player, Card } from './types';
 import {Players, Board} from './components'
 import Deck from './classes/Deck';
 import {TexasHoldem} from 'poker-odds-calc';
 import { IHand } from 'poker-odds-calc/dts/lib/Interfaces';
- 
+
 const oddsCalculator = new TexasHoldem();
 
 const blindLevels = [
@@ -27,28 +26,30 @@ const blindLevels = [
 ];
 
 // Create a deck and shuffle it.
-const deck = (new Deck).shuffle();
+const deck = (new Deck()).shuffle();
 
 // Add players to the game
 const pList: Player[] = ['Ben', 'Steve', 'Bev', 'Finley', 'Dylan'].map((name, key) => {
   const playerHand = [deck.take(), deck.take()]
 
   const player = {
-    id: key.toString(), 
-    name, 
-    inGame: Math.random() >= .1, 
-    dealt: Math.random() >= .2, 
-    allIn: Math.random() >= .8, 
-    hasCalled: Math.random() >= .2, 
-    isButton: Math.random() >= .7, 
-    isSmallBlind: Math.random() >= .7, 
-    isBigBlind: Math.random() >= .8, 
-    folded: Math.random() >= .8, 
-    hand: playerHand, 
+    id: key.toString(),
+    name,
+    inGame: Math.random() >= .1,
+    dealt: Math.random() >= .2,
+    allIn: Math.random() >= .8,
+    hasCalled: Math.random() >= .2,
+    isButton: Math.random() >= .7,
+    isSmallBlind: Math.random() >= .7,
+    isBigBlind: Math.random() >= .8,
+    folded: Math.random() >= .8,
+    hand: playerHand,
     stack: {"25": 0, "100": 0, "500": 0, "1000": 0, "5000": 1, total: Math.floor(Math.random() * 2000000)}
   }
 
-  oddsCalculator.addPlayer(playerHand.map(card => card.string[0].toUpperCase() + card.string.slice(1).toLowerCase()) as IHand)
+  console.log(
+    oddsCalculator.addPlayer(playerHand.map(card => card.string[0].toUpperCase() + card.string.slice(1).toLowerCase()) as IHand)
+  )
 
   return player;
 })
@@ -75,36 +76,17 @@ communityCards.push(deck.take())
 oddsCalculator.setBoard(communityCards.map(card => card.string[0].toUpperCase() + card.string.slice(1).toLowerCase()) as IHand)
 oddsCalculator.setDeadCards(burnCards.map(card => card.string[0].toUpperCase() + card.string.slice(1).toLowerCase()) as IHand)
 
-console.log(oddsCalculator.getGame())
 
 const Result = oddsCalculator.calculate();
- 
-Result.getPlayers().forEach(player => {
-  console.log(player)
-});
+
+Result.getPlayers().forEach(player => console.log(player));
 
 function App() {
-  const [players, setPlayers] = useState<Player[]>([])
-
-  // const [socket, setSocket] = useState<Socket|null>(null);
-
-  // useEffect(() => {
-  //   const newSocket: any = io(`wss://echo.websocket.org`);
-  //   setSocket(newSocket);
-
-  //   if (socket) {
-  //     socket.onAny(e => {
-  //       console.log(e)
-  //     })
-  //   }
-  //   return () => newSocket.close();
-  // }, [setSocket]);
-
   return (
-    <div className="App"> 
-      <div className="blindLevels">
-
-      </div>
+    <div className="App">
+      <ul className="blind-levels">
+        {blindLevels.map(level => <li>{level.length ? level.join('/') : 'Break'}</li>)}
+      </ul>
       <Board communityCards={communityCards} burnCards={burnCards}/>
       <Players players={pList}/>
     </div>

@@ -153,3 +153,16 @@ body {
 .board .burncards .card:not(:nth-child(1)) { box-shadow: none; }
 .board .burncards .card:nth-child(2) { position: absolute; transform: translate(-.25rem, .25rem); }
 .board .burncards .card:nth-child(3) { position: absolute; transform: translate(-.75rem, .5rem); }
+
+.blind-levels {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  list-style: none;
+  text-align: right;
+}
+
+.blind-levels li {
+  margin: 0;
+  padding: 0;
+}
