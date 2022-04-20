@@ -8,6 +8,9 @@ install:
 start: # Install must be run before start.
 	@docker-compose run --service-ports --use-aliases app
 
+session:
+	@docker exec -it $$(docker-compose ps -q app) sh
+
 logs:
 	@docker-compose logs -f appa
 
